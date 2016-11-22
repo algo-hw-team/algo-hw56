@@ -17,7 +17,7 @@ public class MainApp {
     // choose one algorithm from (1, 2, 3, 4, 5) in project specification
     final private static int PROBLEM = 1;
 
-    final private static String basePath = "/Users/Join/dev/homeworks-0302/algo/hw56";
+    final private static String basePath = "/Users/Join/dev/homeworks-0302/algo/hw56/";
     final private static String inputPath = basePath + "13tsp.log";
     final private static String outputPath = basePath + "2013147544.txt";
 
@@ -80,11 +80,6 @@ public class MainApp {
     }
 
     private static Algorithm getAlgorithmByProblem(ArrayList<Node> nodeList) {
-        switch (PROBLEM) {
-
-
-            default:
-                throw new Exception("Not Implemented");
-        }
+        return null;
     }
 }
