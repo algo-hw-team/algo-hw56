@@ -6,6 +6,7 @@ import java.util.Random;
 
 import core.Algorithm;
 import core.Node;
+import core.NodeList;
 
 public class GeneticAlgorithm extends Algorithm {
 
@@ -19,7 +20,7 @@ public class GeneticAlgorithm extends Algorithm {
     private int bestTotalDistance = INF;
     private ArrayList<Chromosome> population;
 
-    public GeneticAlgorithm(ArrayList<Node> nodeList) {
+    public GeneticAlgorithm(NodeList nodeList) {
         super(nodeList);
     }
 
