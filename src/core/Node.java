@@ -13,4 +13,11 @@ public class Node {
     public int getId() {
         return id;
     }
+
+    public static double getDistance(Node n1, Node n2) {
+        int diffX = n1.x - n2.x;
+        int diffY = n1.y - n2.y;
+
+        return Math.sqrt((diffX * diffX) + (diffY * diffY));
+    }
 }

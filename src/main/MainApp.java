@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import core.Node;
 import core.Algorithm;
+import genetic.GeneticAlgorithm;
 
 public class MainApp {
 
@@ -18,7 +19,7 @@ public class MainApp {
     final private static int PROBLEM = 1;
 
     final private static String basePath = "/Users/Join/dev/homeworks-0302/algo/hw56/";
-    final private static String inputPath = basePath + "13tsp.log";
+    final private static String inputPath = basePath + "16tsp.log";
     final private static String outputPath = basePath + "2013147544.txt";
 
     final private static StringBuilder builder = new StringBuilder();
@@ -80,6 +81,6 @@ public class MainApp {
     }
 
     private static Algorithm getAlgorithmByProblem(ArrayList<Node> nodeList) {
-        return null;
+        return new GeneticAlgorithm(nodeList);
     }
 }
