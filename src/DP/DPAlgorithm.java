@@ -10,8 +10,7 @@ public class DPAlgorithm extends Algorithm{
 	public DPAlgorithm(NodeList _nodeList) {
 		super(_nodeList);
 	}
-	@Override
-	public ArrayList<Node> getBestNodeList() {
+	public ArrayList<Integer> getBestIdList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -32,6 +31,8 @@ public class DPAlgorithm extends Algorithm{
 		if (remain.isEmpty()) {
 			return distance[start.getId() - 1][0];
 		}
+
+		return 1;
 	}
 
 }

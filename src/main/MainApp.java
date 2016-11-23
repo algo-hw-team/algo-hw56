@@ -53,11 +53,11 @@ public class MainApp {
             Algorithm algorithm = getAlgorithmByProblem(new NodeList(nodeList));
 
             algorithm.run();
-            ArrayList<Node> bestNodeList = algorithm.getBestNodeList();
+            ArrayList<Integer> bestNodeList = algorithm.getBestIdList();
             int bestTotalDistance = algorithm.getBestTotalDistance();
 
-            for (Node node : bestNodeList) {
-                builder.append(node.getId()).append(" ");
+            for (Integer nodeId: bestNodeList) {
+                builder.append(nodeId).append(" ");
             }
             builder
                     .append(System.getProperty("line.separator"))

@@ -1,32 +1,40 @@
 package genetic;
 
-import core.Node;
+import core.NodeList;
 
 import java.util.ArrayList;
 
-public class Chromosome {
+class Chromosome {
 
-    private ArrayList<Node> nodeList;
+    private ArrayList<Integer> idList;
     private double totalDistance;
+    private NodeList nodeList;
 
-    public Chromosome(ArrayList<Node> _nodeList) {
+    public Chromosome(NodeList _nodeList, ArrayList<Integer> _idList) {
+        idList = _idList;
         nodeList = _nodeList;
-        totalDistance = 0;
-        int length = nodeList.size();
 
-        for (int i = 0; i < length - 1; i++) {
-            totalDistance += Node.getDistance(nodeList.get(i), nodeList.get(i + 1));
-        }
-
-        totalDistance += Node.getDistance(nodeList.get(length - 1), nodeList.get(0));
+        calculateTotalDistance();
     }
 
     public double getTotalDistance() {
         return totalDistance;
     }
 
-    public ArrayList<Node> getNodeList() {
-        return nodeList;
+    public ArrayList<Integer> getIdList() {
+        return idList;
+    }
+
+    private void calculateTotalDistance() {
+        int length = idList.size();
+        totalDistance = 0;
+
+        for (int i = 0; i < length - 1; i++) {
+            int id1 = idList.get(i);
+            int id2 = idList.get(i + 1);
+
+            totalDistance += nodeList.distance[id1][id2];
+        }
     }
     
 }

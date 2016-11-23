@@ -10,6 +10,6 @@ abstract public class Algorithm {
         nodeList = _nodeList;
     }
     abstract public void run();
-    abstract public ArrayList<Node> getBestNodeList();
+    abstract public ArrayList<Integer> getBestIdList();
     abstract public int getBestTotalDistance();
 }

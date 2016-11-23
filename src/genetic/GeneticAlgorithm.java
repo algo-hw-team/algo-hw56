@@ -16,7 +16,7 @@ public class GeneticAlgorithm extends Algorithm {
     final private int TOTAL_GENERATIONS = 100;
 
     private Random rand = new Random();
-    private ArrayList<Node> bestNodeList = null;
+    private ArrayList<Integer> bestIdList = null;
     private int bestTotalDistance = INF;
     private ArrayList<Chromosome> population;
 
@@ -34,8 +34,8 @@ public class GeneticAlgorithm extends Algorithm {
         pickBestChromosome();
     }
 
-    public ArrayList<Node> getBestNodeList() {
-        return bestNodeList;
+    public ArrayList<Integer> getBestIdList() {
+        return bestIdList;
     }
 
     public int getBestTotalDistance() {
@@ -50,51 +50,54 @@ public class GeneticAlgorithm extends Algorithm {
 
             if (distance < bestTotalDistance) {
                 bestTotalDistance = distance;
-                bestNodeList = chromosome.getNodeList();
+                bestIdList = chromosome.getIdList();
             }
         }
     }
 
     private void initializePopulation() {
         population = new ArrayList<>();
-        ArrayList<Integer> indexList = new ArrayList<>();
+        ArrayList<Integer> idList = new ArrayList<>();
 
         for (int i = 1; i < nodeList.size(); i++) {
-            indexList.add(i);
+            idList.add(i);
         }
 
         for (int i = 0; i < POPULATION_SIZE; i++) {
-            population.add(createChromosome(indexList));
-            Collections.shuffle(indexList);
+            population.add(createChromosome(idList));
+            Collections.shuffle(idList);
         }
     }
 
-    private Chromosome createChromosome(ArrayList<Integer> indexList) {
-        ArrayList<Node> localNodeList = new ArrayList<>();
-
-        for (Integer i : indexList) {
-            localNodeList.add(nodeList.get(i));
-        }
+    private Chromosome createChromosome(ArrayList<Integer> idList) {
+        ArrayList<Integer> localIdList = new ArrayList<>(idList);
 
         // since first node should be fixed
-        localNodeList.add(0, nodeList.get(0));
+        localIdList.add(0, 0);
 
-        return new Chromosome(localNodeList);
+        return new Chromosome(nodeList, localIdList);
     }
 
     private void nextGeneration() {
         ArrayList<Chromosome> nextPopulation = new ArrayList<>();
 
         // crossover
-        for (int i = 0; i < POPULATION_SIZE; i += 2) {
+        for (int i = 0; i < POPULATION_SIZE;) {
             Chromosome c1 = tournamentSelection();
             Chromosome c2 = tournamentSelection();
-            ArrayList<Node> nList1 = new ArrayList<>(c1.getNodeList());
-            ArrayList<Node> nList2 = new ArrayList<>(c2.getNodeList());
+            ArrayList<Integer> idList1 = new ArrayList<>(c1.getIdList());
+            ArrayList<Integer> idList2 = new ArrayList<>(c2.getIdList());
 
-            crossover(nList1, nList2);
-            nextPopulation.add(new Chromosome(nList1));
-            nextPopulation.add(new Chromosome(nList2));
+            crossover(idList1, idList2);
+            nextPopulation.add(new Chromosome(nodeList, idList1));
+            if (++i >= POPULATION_SIZE) {
+                break;
+            }
+
+            nextPopulation.add(new Chromosome(nodeList, idList2));
+            if (++i >= POPULATION_SIZE) {
+                break;
+            }
         }
 
         // mutation
@@ -103,44 +106,44 @@ public class GeneticAlgorithm extends Algorithm {
                 continue;
             }
 
-            ArrayList<Node> nList = new ArrayList<>(nextPopulation.get(i).getNodeList());
-            mutate(nList);
+            ArrayList<Integer> idList = new ArrayList<>(nextPopulation.get(i).getIdList());
+            mutate(idList);
 
-            nextPopulation.set(i, new Chromosome(nList));
+            nextPopulation.set(i, new Chromosome(nodeList, idList));
         }
 
         // swap population
         population = nextPopulation;
     }
 
-    private void mutate(ArrayList<Node> nList) {
+    private void mutate(ArrayList<Integer> nList) {
         int bound = nList.size() - 1;
         int i = rand.nextInt(bound) + 1;
         int j = rand.nextInt(bound) + 1;
 
-        Node n1 = nList.get(i);
-        Node n2 = nList.get(j);
+        int n1 = nList.get(i);
+        int n2 = nList.get(j);
 
         nList.set(i, n2);
         nList.set(j, n1);
     }
 
-    private void crossover(ArrayList<Node> nList1, ArrayList<Node> nList2) {
+    private void crossover(ArrayList<Integer> nList1, ArrayList<Integer> nList2) {
         int cycleIndex = 4;
         int size = nList1.size();
         boolean doSwap = true;
 
         while (doSwap) {
-            Node n1 = nList1.get(cycleIndex);
-            Node n2 = nList2.get(cycleIndex);
+            int id1 = nList1.get(cycleIndex);
+            int id2 = nList2.get(cycleIndex);
 
             // swap
-            nList1.set(cycleIndex, n2);
-            nList2.set(cycleIndex, n1);
+            nList1.set(cycleIndex, id2);
+            nList2.set(cycleIndex, id1);
 
             doSwap = false;
             for (int i = 0; i < size; i++) {
-                if ((nList1.get(i).getId() == n2.getId()) && (i != cycleIndex)) {
+                if ((nList1.get(i) == id2) && (i != cycleIndex)) {
                     cycleIndex = i;
                     doSwap = true;
                     break;
