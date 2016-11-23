@@ -13,9 +13,9 @@ public class NodeList {
 				int node1 = list.get(i).getId();
 				int node2 = list.get(j).getId();
 				if (node1 == node2) {
-					distance[node1][node2] = 0;
+					distance[node1 - 1][node2 - 1] = 0;
 				} else {
-					distance[node1][node2] = Math.sqrt(Math.pow(list.get(i).x - list.get(j).x,2) + Math.pow(list.get(i).y - list.get(j).y,2));
+					distance[node1 - 1][node2 - 1] = Math.sqrt(Math.pow(list.get(i).x - list.get(j).x,2) + Math.pow(list.get(i).y - list.get(j).y,2));
 				}
 			}
 		}

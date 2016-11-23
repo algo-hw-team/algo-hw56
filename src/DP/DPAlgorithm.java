@@ -22,8 +22,16 @@ public class DPAlgorithm extends Algorithm{
 	}
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		ArrayList<Node> input = super.nodeList.list;
 		
+		
+	}
+	
+	static double dp (Node start, ArrayList<Node> remain, double[][] distance) {
+		
+		if (remain.isEmpty()) {
+			return distance[start.getId() - 1][0];
+		}
 	}
 
 }

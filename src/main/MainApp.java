@@ -10,6 +10,7 @@ import java.lang.Exception;
 import java.util.ArrayList;
 
 import core.Node;
+import core.NodeList;
 import core.Algorithm;
 
 public class MainApp {
@@ -48,7 +49,7 @@ public class MainApp {
             }
 
             // run algorithm
-            Algorithm algorithm = getAlgorithmByProblem(nodeList);
+            Algorithm algorithm = getAlgorithmByProblem(new NodeList(nodeList));
 
             algorithm.run();
             ArrayList<Node> bestNodeList = algorithm.getBestNodeList();
@@ -79,7 +80,7 @@ public class MainApp {
         }
     }
 
-    private static Algorithm getAlgorithmByProblem(ArrayList<Node> nodeList) {
+    private static Algorithm getAlgorithmByProblem(NodeList nodeList) {
         return null;
     }
 }
