@@ -13,6 +13,7 @@ import core.Node;
 import core.NodeList;
 import core.Algorithm;
 import genetic.GeneticAlgorithm;
+import sa.SAAlgorithm;
 
 public class MainApp {
 
@@ -83,6 +84,6 @@ public class MainApp {
     }
 
     private static Algorithm getAlgorithmByProblem(NodeList nodeList) {
-        return new GeneticAlgorithm(nodeList);
+        return new SAAlgorithm(nodeList);
     }
 }
