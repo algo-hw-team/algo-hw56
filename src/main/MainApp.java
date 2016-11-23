@@ -59,6 +59,7 @@ public class MainApp {
             for (Integer nodeId: bestNodeList) {
                 builder.append(nodeId).append(" ");
             }
+            builder.append(1);
             builder
                     .append(System.getProperty("line.separator"))
                     .append(bestTotalDistance);

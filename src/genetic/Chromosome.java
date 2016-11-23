@@ -26,15 +26,17 @@ class Chromosome {
     }
 
     private void calculateTotalDistance() {
-        int length = idList.size();
+        int last = idList.size() - 1;
         totalDistance = 0;
 
-        for (int i = 0; i < length - 1; i++) {
-            int id1 = idList.get(i);
-            int id2 = idList.get(i + 1);
+        for (int i = 0; i < last; i++) {
+            int index1 = idList.get(i) - 1;
+            int index2 = idList.get(i + 1) - 1;
 
-            totalDistance += nodeList.distance[id1][id2];
+            totalDistance += nodeList.distance[index1][index2];
         }
+
+        totalDistance += nodeList.distance[idList.get(last) - 1][0];
     }
     
 }

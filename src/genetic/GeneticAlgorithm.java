@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.Random;
 
 import core.Algorithm;
-import core.Node;
 import core.NodeList;
 
 public class GeneticAlgorithm extends Algorithm {
@@ -60,7 +59,7 @@ public class GeneticAlgorithm extends Algorithm {
         ArrayList<Integer> idList = new ArrayList<>();
 
         for (int i = 1; i < nodeList.size(); i++) {
-            idList.add(i);
+            idList.add(i + 1);
         }
 
         for (int i = 0; i < POPULATION_SIZE; i++) {
@@ -73,7 +72,7 @@ public class GeneticAlgorithm extends Algorithm {
         ArrayList<Integer> localIdList = new ArrayList<>(idList);
 
         // since first node should be fixed
-        localIdList.add(0, 0);
+        localIdList.add(0, 1);
 
         return new Chromosome(nodeList, localIdList);
     }
