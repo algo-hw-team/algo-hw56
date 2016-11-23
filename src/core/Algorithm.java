@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 abstract public class Algorithm {
 
-    protected ArrayList<Node> nodeList;
+    protected NodeList nodeList;
 
-    public Algorithm(ArrayList<Node> _nodeList) {
+    public Algorithm(NodeList _nodeList) {
         nodeList = _nodeList;
     }
     abstract public void run();
