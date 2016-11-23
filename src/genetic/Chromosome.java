@@ -30,13 +30,10 @@ class Chromosome {
         totalDistance = 0;
 
         for (int i = 0; i < last; i++) {
-            int index1 = idList.get(i) - 1;
-            int index2 = idList.get(i + 1) - 1;
-
-            totalDistance += nodeList.distance[index1][index2];
+            totalDistance += nodeList.getDistance(idList.get(i), idList.get(i + 1));
         }
 
-        totalDistance += nodeList.distance[idList.get(last) - 1][0];
+        totalDistance += nodeList.getDistance(idList.get(last), idList.get(0));
     }
     
 }

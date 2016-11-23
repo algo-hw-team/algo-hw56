@@ -22,6 +22,10 @@ public class NodeList {
         }
     }
 
+    public double getDistance(int id1, int id2) {
+        return distance[id1 - 1][id2 - 1];
+    }
+
     public int size() {
         return list.size();
     }
