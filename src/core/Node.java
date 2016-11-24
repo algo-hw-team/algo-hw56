@@ -2,9 +2,10 @@ package core;
 
 public class Node {
 
-    public int id, x, y;
+    public int id;
+    public double x, y;
 
-    public Node(int _id, int _x, int _y) {
+    public Node(int _id, double _x, double _y) {
         id = _id;
         x = _x;
         y = _y;
@@ -14,11 +15,11 @@ public class Node {
         return id;
     }
     
-    public int getX() {
+    public double getX() {
     	return x;
     }
     
-    public int getY() {
+    public double getY() {
     	return y;
     }
 }

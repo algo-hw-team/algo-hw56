@@ -16,7 +16,7 @@ public class GeneticAlgorithm extends Algorithm {
 
     private Random rand = new Random();
     private ArrayList<Integer> bestIdList = null;
-    private int bestTotalDistance = INF;
+    private double bestTotalDistance = INF;
     private ArrayList<Chromosome> population;
 
     public GeneticAlgorithm(NodeList nodeList) {
@@ -37,7 +37,7 @@ public class GeneticAlgorithm extends Algorithm {
         return bestIdList;
     }
 
-    public int getBestTotalDistance() {
+    public double getBestTotalDistance() {
         return bestTotalDistance;
     }
 
@@ -45,7 +45,7 @@ public class GeneticAlgorithm extends Algorithm {
 
     private void pickBestChromosome() {
         for (Chromosome chromosome : population) {
-            int distance = (int) chromosome.getTotalDistance();
+            double distance = chromosome.getTotalDistance();
 
             if (distance < bestTotalDistance) {
                 bestTotalDistance = distance;

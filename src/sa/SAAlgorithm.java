@@ -13,7 +13,7 @@ public class SAAlgorithm extends Algorithm {
     final private double KT = 100;
 
     private ArrayList<Integer> bestIdList = null;
-    private int bestTotalDistance;
+    private double bestTotalDistance;
 
     private double temperature = 10000.0;
     Random rand = new Random();
@@ -44,7 +44,7 @@ public class SAAlgorithm extends Algorithm {
     }
 
     @Override
-    public int getBestTotalDistance() {
+    public double getBestTotalDistance() {
         return bestTotalDistance;
     }
 
@@ -59,7 +59,7 @@ public class SAAlgorithm extends Algorithm {
 
         Collections.shuffle(bestIdList);
 
-        bestTotalDistance = (int) getTotalDistance(bestIdList);
+        bestTotalDistance = getTotalDistance(bestIdList);
         return bestIdList;
     }
 
@@ -77,7 +77,7 @@ public class SAAlgorithm extends Algorithm {
         nextSolution.set(index2, value1);
 
         // compare next and current bestIdList
-        int nextTotalDistance = (int) getTotalDistance(nextSolution);
+        double nextTotalDistance = getTotalDistance(nextSolution);
 
         if (nextTotalDistance < bestTotalDistance) {
             bestIdList = nextSolution;
