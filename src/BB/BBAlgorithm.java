@@ -48,6 +48,9 @@ public class BBAlgorithm extends Algorithm{
 	
 	private void bfs(double cost, int start, ArrayList<Integer> remain) {
 		count++;
+		if (count % 10000 == 0) {
+			System.out.println(count);
+		}
 		if (remain.size() == 1) {
 			if (cost + super.nodeList.getDistance(start, remain.get(0)) + super.nodeList.getDistance(remain.get(0), 1) < min) {
 				min = cost + super.nodeList.getDistance(start, remain.get(0)) + super.nodeList.getDistance(remain.get(0), 1);

@@ -11,11 +11,13 @@ import jdk.internal.org.objectweb.asm.commons.RemappingMethodAdapter;
 public class DPAlgorithm extends Algorithm {
 	ArrayList<Integer> bestNodeList;
 	HashMap<Integer, HashMap<ArrayList<Integer>, ArrayList<Integer>>> map;
-
+	long count;
+	
 	public DPAlgorithm(NodeList _nodeList) {
 		super(_nodeList);
 		map = new HashMap<>();
 		bestNodeList = new ArrayList<>();
+		count = 0;
 	}
 
 	@Override
@@ -44,10 +46,11 @@ public class DPAlgorithm extends Algorithm {
 		System.out.println("recursive DP");
 		ArrayList<Integer> result = dp(1, remain);
 		bestNodeList.addAll(result);
-		System.out.println("end DP");
+		System.out.println("end DP: " + count);
 	}
 
 	private ArrayList<Integer> dp(int start, ArrayList<Integer> remain) {
+		count++;
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		if (map.containsKey(start)) {
 			if (map.get(start).containsKey(remain)) {

@@ -22,7 +22,7 @@ public class MainApp {
     final private static int PROBLEM = 1;
 
     final private static String basePath = "./";
-    final private static String inputPath = basePath + "51tsp.log";
+    final private static String inputPath = basePath + "38tsp.log";
     final private static String outputPath = basePath + "2013147544.txt";
 
     final private static StringBuilder builder = new StringBuilder();
@@ -56,8 +56,12 @@ public class MainApp {
             
             NodeList list = new NodeList(nodeList);
             BBAlgorithm algorithm = new BBAlgorithm(list);
+            long startTime = System.currentTimeMillis();
+            System.out.println("시작시간: " + startTime);
             algorithm.run();
-            System.out.println("run");
+            long endTime = System.currentTimeMillis();
+            System.out.println("종료시간: " + endTime);
+            System.out.println("수행시간: " + (endTime - startTime));
             ArrayList<Integer> bestNodeList = algorithm.getBestIdList();
             double bestTotalDistance = algorithm.getBestTotalDistance();
 
