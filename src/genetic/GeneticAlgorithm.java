@@ -37,7 +37,7 @@ public class GeneticAlgorithm extends Algorithm {
         return bestIdList;
     }
 
-    public int getBestTotalDistance() {
+    public double getBestTotalDistance() {
         return bestTotalDistance;
     }
 

@@ -11,5 +11,5 @@ abstract public class Algorithm {
     }
     abstract public void run();
     abstract public ArrayList<Integer> getBestIdList();
-    abstract public int getBestTotalDistance();
+    abstract public double getBestTotalDistance();
 }

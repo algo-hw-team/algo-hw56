@@ -9,18 +9,20 @@ import java.io.IOException;
 import java.lang.Exception;
 import java.util.ArrayList;
 
+import BB.BBAlgorithm;
+import BT.BTAlgorithm;
+import DP.DPAlgorithm;
 import core.Node;
 import core.NodeList;
 import core.Algorithm;
-import genetic.GeneticAlgorithm;
 
 public class MainApp {
 
     // choose one algorithm from (1, 2, 3, 4, 5) in project specification
     final private static int PROBLEM = 1;
 
-    final private static String basePath = "/Users/Join/dev/homeworks-0302/algo/hw56/";
-    final private static String inputPath = basePath + "16tsp.log";
+    final private static String basePath = "./";
+    final private static String inputPath = basePath + "51tsp.log";
     final private static String outputPath = basePath + "2013147544.txt";
 
     final private static StringBuilder builder = new StringBuilder();
@@ -44,17 +46,20 @@ public class MainApp {
             for (int i = 0; i < numOfNodes; i++) {
                 String[] tokens = inputList.get(i + 1).split(" ");
                 int id = Integer.parseInt(tokens[0]);
-                int x = Integer.parseInt(tokens[1]);
-                int y = Integer.parseInt(tokens[2]);
+                double x = Double.parseDouble(tokens[1]);
+                double y = Double.parseDouble(tokens[2]);
                 nodeList.add(new Node(id, x, y));
             }
 
             // run algorithm
-            Algorithm algorithm = getAlgorithmByProblem(new NodeList(nodeList));
-
+            //Algorithm algorithm = getAlgorithmByProblem(new NodeList(nodeList));
+            
+            NodeList list = new NodeList(nodeList);
+            BBAlgorithm algorithm = new BBAlgorithm(list);
             algorithm.run();
+            System.out.println("run");
             ArrayList<Integer> bestNodeList = algorithm.getBestIdList();
-            int bestTotalDistance = algorithm.getBestTotalDistance();
+            double bestTotalDistance = algorithm.getBestTotalDistance();
 
             for (Integer nodeId: bestNodeList) {
                 builder.append(nodeId).append(" ");
@@ -82,7 +87,9 @@ public class MainApp {
         }
     }
 
+    /*
     private static Algorithm getAlgorithmByProblem(NodeList nodeList) {
         return new GeneticAlgorithm(nodeList);
     }
+    */
 }
